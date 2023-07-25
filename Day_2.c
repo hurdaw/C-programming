@@ -10,7 +10,7 @@ int imin(int a[100], int n)
             index = i;
         }
     }
-    return index;
+    return a[index];
 }
 int imax(int a[100], int n)
 {
@@ -23,7 +23,7 @@ int imax(int a[100], int n)
             index = i;
         }
     }
-    return index;
+    return a[index];
 }
 // top 2 in array
 int max2(int a[100], int n)
