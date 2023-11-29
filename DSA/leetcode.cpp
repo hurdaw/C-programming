@@ -289,6 +289,68 @@ public:
         }
         return -1;
     }
+    // haystack = "sadbutsad", needle = "sad"
+    // output = 0
+    int strStr(string haystack, string needle)
+    {
+        const char *p = strstr(haystack.c_str(), needle.c_str());
+        if (p)
+        {
+            return (p - haystack.c_str());
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    int pascal(int k, int n)
+    {
+        if (k == 0 || k == n)
+            return 1;
+        return pascal(k, n - 1) + pascal(k - 1, n - 1);
+    }
+    void use(int n)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int k = 0; k <= i; k++)
+            {
+                cout << pascal(k, i) << " ";
+            }
+            cout << endl;
+        }
+    }
+    vector<vector<int>> generate1(int numRows)
+    {
+        vector<vector<int>> result;
+        for (int i = 0; i < numRows; i++)
+        {
+            vector<int> row(i + 1);
+            for (int k = 0; k <= i; k++)
+            {
+                row[k] = pascal(k, i);
+            }
+            result.push_back(row);
+        }
+        return result;
+    }
+    vector<vector<int>> generate(int numRows)
+    {
+        vector<vector<int>> result;
+        result.push_back({1});
+        for (int i = 1; i < numRows; i++)
+        {
+            vector<int> a;
+            a.push_back(1);
+            for (int j = 1; j <= i - 1; j++)
+            {
+                a.push_back(result[i - 1][j - 1] + result[i - 1][j]);
+            }
+            a.push_back(1);
+            result.push_back(a);
+        }
+        return result;
+    }
 };
 int main()
 {
@@ -317,6 +379,20 @@ int main()
     //     cout << kq[i] << " ";
     // }
     // cout << s.pivotIndex(nums);
-    int n = 8;
-    cout << s.pivotInteger2(n);
+    // int n = 8;
+    // cout << s.pivotInteger2(n);
+    string hay = "sadbutsad", need = "sad";
+    // cout << s.strStr(hay, need);
+    int n;
+    cin >> n;
+    vector<vector<int>> kq = s.generate(n);
+    for (int i = 0; i < kq.size(); i++)
+    {
+        for (int j = 0; j < kq[i].size(); j++)
+        {
+            cout << kq[i][j] << " ";
+        }
+        cout << endl;
+    }
+    return 0;
 }
