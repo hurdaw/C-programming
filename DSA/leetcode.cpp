@@ -217,6 +217,8 @@ public:
     }
     vector<int> runningSum(vector<int> &nums)
     {
+        // 5 3 1 2 8 9
+        // 5 8 9 11 19 28
         int n = nums.size();
         vector<int> run(n);
         run[0] = nums[0];
@@ -339,7 +341,7 @@ public:
     //  1 1
     //  1 2 1
     //  1 3 3 1
-    //  1 4 6 4 1  
+    //  1 4 6 4 1
     vector<vector<int>> generate(int numRows)
     {
         vector<vector<int>> result;
@@ -356,6 +358,76 @@ public:
             result.push_back(a);
         }
         return result;
+    }
+    // n=27
+    // 27/3/3/3==1
+    bool isPowerOfThree2(int n)
+    {
+        if (n == 1)
+        {
+            return true;
+        }
+        if (n <= 0)
+            return false;
+        if (n % 3 == 0)
+        {
+            return isPowerOfThree(n / 3);
+        }
+        else
+        {
+            return false;
+        }
+    }
+    bool isPowerOfThree(int n)
+    {
+        if (n <= 0)
+            return false;
+        if (n == 1)
+            return true;
+        return (n % 3 == 0) && isPowerOfThree(n / 3);
+    }
+    // input: digits = [1,2,3]
+    // output: [1, 2, 4];
+    vector<int> plusOne(vector<int> &digits)
+    {
+        vector<int> result;
+        long long sum = 0, tmp;
+        // 0
+        // 0=0+1=1  1*10=10
+        // 10=10+2=12 12*10=120
+        // 120=120+3=123
+        for (int i = 0; i < digits.size(); i++)
+        {
+            sum = sum * 10 + digits[i];
+        }
+        sum++;
+        if (sum == 0)
+        {
+            result.push_back(0);
+        }
+        while (sum != 0)
+        {
+            result.insert(result.begin(), sum % 10);
+            sum /= 10;
+        }
+        return result;
+    }
+    vector<int> plusOne2(vector<int> &digits)
+    {
+        for (int i = digits.size() - 1; i >= 0; i--)
+        {
+            if (digits[i] < 9)
+            {
+                digits[i]++;
+                return digits;
+            }
+            else
+            {
+                digits[i] = 0;
+            }
+        }
+        digits.insert(digits.begin(), 1);
+        return digits;
     }
 };
 int main()
@@ -390,15 +462,21 @@ int main()
     string hay = "sadbutsad", need = "sad";
     // cout << s.strStr(hay, need);
     int n;
-    cin >> n;
-    vector<vector<int>> kq = s.generate(n);
-    for (int i = 0; i < kq.size(); i++)
+    // cin >> n;
+    //  vector<vector<int>> kq = s.generate(n);
+    //  for (int i = 0; i < kq.size(); i++)
+    //  {
+    //      for (int j = 0; j < kq[i].size(); j++)
+    //      {
+    //          cout << kq[i][j] << " ";
+    //      }
+    //      cout << endl;
+    //  }
+    // cout << s.isPowerOfThree(45);
+    vector<int> digits = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+    vector<int> result = s.plusOne(digits);
+    for (int i = 0; i < result.size(); i++)
     {
-        for (int j = 0; j < kq[i].size(); j++)
-        {
-            cout << kq[i][j] << " ";
-        }
-        cout << endl;
+        cout << result[i] << " ";
     }
-    return 0;
 }
