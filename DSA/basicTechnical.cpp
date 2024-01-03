@@ -200,7 +200,27 @@ void quickSortHoare(int a[], int left, int right)
 }
 //  Tìm dãy con liên tiếp có tổng lớn nhất trong một mảng số nguyên bằng cách sử dụng kỹ thuật prefix sums.
 // 1 2 3 34 52 33 8 9
-
+int fibonacci(int n)
+{
+    // Trường hợp cơ bản: n = 0 hoặc n = 1
+    if (n == 1 || n == 2)
+    {
+        return 1;
+    }
+    else
+    {
+        // Đệ quy: F(n) = F(n-1) + F(n-2)
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+// 1 1 2 3 5 
+void printfibonacci(int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << fibonacci(i) << " ";
+    }
+}
 int main()
 {
     char s[100];
@@ -214,7 +234,7 @@ int main()
     // cout << sum(6);
     // printFibo(5);
     // daoChuoi(s);
-    nhapMang(a, n);
+    // nhapMang(a, n);
     // cout << "Max: " << max(a, n);
     // bubbleSort(a, n);
     // cout << palidromeString(s);

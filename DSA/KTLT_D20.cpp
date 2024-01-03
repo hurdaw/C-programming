@@ -75,12 +75,15 @@ void merge(int a[], int left, int mid, int right)
         a[left++] = y[j++];
     }
 }
+// 10
+// 0  1  2  3  4  5  6  7  8  9 
+// 37 37 45 22 11 12 46 45 37 27 
 void merge2(int a[], int l, int m, int r)
 {
     int leftSize = m - l + 1;
     int rightSize = r - m;
     int left[leftSize], right[rightSize];
-   for (int i = 0; i < leftSize; i++)
+    for (int i = 0; i < leftSize; i++)
     {
         left[i] = a[l + i]; // Sao chép các phần tử vào mảng left
     }
@@ -114,8 +117,8 @@ void mergeSort(int a[], int left, int right)
 {
     if (left >= right)
         return;
-    // int mid = (left + right) / 2;
-    int mid = left + (right - left) / 2;
+    int mid = (left + right) / 2;
+    // int mid = left + (right - left) / 2;
     mergeSort(a, left, mid);
     mergeSort(a, mid + 1, right);
     merge2(a, left, mid, right);
@@ -156,6 +159,13 @@ int UCLN(int a, int b)
     else
         return UCLN(a, b - a);
 }
+int UCLN2(int a, int b)
+{
+    if (b == 0)
+        return a;
+    else
+        return UCLN2(b, a % b);
+}
 int BCNN(int a, int b)
 {
     return (a * b) / UCLN(a, b);
@@ -174,6 +184,10 @@ int DtoB(int n)
     int x, sum = 0, i = 1;
     while (n != 0)
     {
+        // 15
+        // x=1
+        // s=1
+        // n=7
         x = n % 2;
         sum += (i * x);
         n /= 2;
@@ -232,32 +246,18 @@ float dienTichTamGiac(float a, float b, float c)
     s = sqrt(p * (p - a) * (p - b) * (p - c));
     return s;
 }
-int nhapN(int &n){
-    cin>>n;
+void nhapN(int &n)
+{
+    cin >> n;
 }
 
 int main()
 {
-    // cin >> n;
     int a[100], b[100], n, m;
-    float x, y, z;
-    nhapN(n);
-    cout<<n;
-    // mergeSort(a, 0, 4);
-    // for (int i = 0; i < 5; i++)
-    // {
-    //     cout << a[i] << " ";
-    // }
-    // cout << bai1(n);
-    // hienthiBai1(n);
-    // nhapMang(a, n);
-    // cout << BCNN_mang(a, n);
-    // mergeArray(a, b, n, m);
-    // cout << DtoB(10);
-    // cout << ULMax(n);
-    // nhapTamGiac(x, y, z);
-    // checkTypeTriangle(x, y, z);
-    // cout << endl
-    //<< "Dien tich là: " << dienTichTamGiac(x, y, z);
-   
+    nhapMang(a, n);
+    mergeSort(a, 0, n - 1);
+    for (int i = 0; i < n; i++)
+    {
+        cout << a[i] << " ";
+    }
 }
