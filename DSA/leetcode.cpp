@@ -429,6 +429,28 @@ public:
         digits.insert(digits.begin(), 1);
         return digits;
     }
+    // word1 = "abc", word2 = "pqr"
+    // "apbqcr"
+    // a   b   c
+    //   p   q   r
+    string mergeAlternately(string word1, string word2)
+    {
+        string result;
+        int i = 0, j = 0;
+        while (i < word1.length() || j < word2.length())
+        {
+            if (i < word1.length())
+            {
+                result.push_back(word1[i++]);
+            }
+            if (j < word2.length())
+            {
+                result.push_back(word2[j++]);
+            }
+        }
+
+        return result;
+    }
 };
 int main()
 {
@@ -473,10 +495,16 @@ int main()
     //      cout << endl;
     //  }
     // cout << s.isPowerOfThree(45);
-    vector<int> digits = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-    vector<int> result = s.plusOne(digits);
-    for (int i = 0; i < result.size(); i++)
+    // vector<int> digits = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+    // vector<int> result = s.plusOne(digits);
+    // for (int i = 0; i < result.size(); i++)
+    // {
+    //     cout << result[i] << " ";
+    // }
+    string s1 = {"ab"}, s2 = {"pqrs"};
+    string result = s.mergeAlternately(s1, s2);
+    for (int i = 0; i < result.length(); i++)
     {
-        cout << result[i] << " ";
+        cout << result[i];
     }
 }
